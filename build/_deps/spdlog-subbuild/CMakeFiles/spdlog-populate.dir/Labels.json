@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/spdlog-populate"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/44fd036644ea37019bc399059fa4cc89/spdlog-populate.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/105a26d10745b6d65b58aaaa641425eb/spdlog-populate-complete.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-build.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-configure.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-download.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-install.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-mkdir.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-patch.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-test.rule"
+		},
+		{
+			"file" : "Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/350f600bcb5af104c1fce9705383fc75/spdlog-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"spdlog-populate"
+		],
+		"name" : "spdlog-populate"
+	}
+}

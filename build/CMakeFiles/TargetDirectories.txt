@@ -1,0 +1,5 @@
+Z:/Projects/C++/IonDLL/build/CMakeFiles/iondll.dir
+Z:/Projects/C++/IonDLL/build/CMakeFiles/ALL_BUILD.dir
+Z:/Projects/C++/IonDLL/build/CMakeFiles/ZERO_CHECK.dir
+Z:/Projects/C++/IonDLL/build/_deps/spdlog-build/CMakeFiles/spdlog.dir
+Z:/Projects/C++/IonDLL/build/_deps/spdlog-build/CMakeFiles/ALL_BUILD.dir

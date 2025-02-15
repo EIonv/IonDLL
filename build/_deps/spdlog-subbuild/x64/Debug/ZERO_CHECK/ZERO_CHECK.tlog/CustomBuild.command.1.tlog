@@ -1,0 +1,10 @@
+^Z:\PROJECTS\C++\IONDLL\BUILD\_DEPS\SPDLOG-SUBBUILD\CMAKEFILES\44FD036644EA37019BC399059FA4CC89\GENERATE.STAMP.RULE
+setlocal
+D:\cmake\bin\cmake.exe -SZ:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild -BZ:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/spdlog-populate.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

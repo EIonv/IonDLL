@@ -1,0 +1,10 @@
+^Z:\PROJECTS\C++\IONDLL\BUILD\_DEPS\SPDLOG-SRC\CMAKELISTS.TXT
+setlocal
+D:\cmake\bin\cmake.exe -SZ:/Projects/C++/IonDLL/IonDLL -BZ:/Projects/C++/IonDLL/build --check-stamp-file Z:/Projects/C++/IonDLL/build/_deps/spdlog-build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

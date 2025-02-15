@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="Z:\Projects\C++\IonDLL\build\_deps\spdlog-subbuild\CMakeFiles\44fd036644ea37019bc399059fa4cc89\generate.stamp.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{E171F35D-3460-351A-B746-5EFBB19AE5A9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

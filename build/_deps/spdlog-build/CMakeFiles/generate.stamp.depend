@@ -1,0 +1,12 @@
+# CMake generation dependency list for this directory.
+D:/cmake/share/cmake-3.30/Modules/CheckCSourceCompiles.cmake
+D:/cmake/share/cmake-3.30/Modules/CheckIncludeFile.cmake
+D:/cmake/share/cmake-3.30/Modules/CheckLibraryExists.cmake
+D:/cmake/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake
+D:/cmake/share/cmake-3.30/Modules/FindPackageMessage.cmake
+D:/cmake/share/cmake-3.30/Modules/FindThreads.cmake
+D:/cmake/share/cmake-3.30/Modules/GNUInstallDirs.cmake
+D:/cmake/share/cmake-3.30/Modules/Internal/CheckSourceCompiles.cmake
+Z:/Projects/C++/IonDLL/build/_deps/spdlog-src/CMakeLists.txt
+Z:/Projects/C++/IonDLL/build/_deps/spdlog-src/cmake/ide.cmake
+Z:/Projects/C++/IonDLL/build/_deps/spdlog-src/cmake/utils.cmake
