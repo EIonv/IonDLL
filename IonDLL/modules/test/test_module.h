@@ -8,11 +8,6 @@
 #include <windows.h>
 #include <string>
 
-
-namespace Test {
-  void RunObfuscatedCommand();
-}
-
 extern "C" __declspec(dllexport) bool DumpMemoryInfo();
 
 #endif /* TEST_H */

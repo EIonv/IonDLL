@@ -1,5 +1,5 @@
 target_sources(
   ${PROJECT_NAME}
   PRIVATE
-  obfuscate.hpp
+  detach_module.cpp
 )

@@ -4,4 +4,5 @@ target_sources(
   module_manager.h
 )
 
+add_subdirectory(detach)
 add_subdirectory(test)

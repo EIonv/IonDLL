@@ -1,6 +1,6 @@
 # DLL Injection and Memory Dumping Utility
 
-This project demonstrates how to inject a DLL (`iondll.dll`) into a process and call a function (`DumpMemoryInfo`) from the DLL to dump memory information.
+This project demonstrates how to inject a DLL (`ion.dll`) into a process and call a function (`DumpMemoryInfo`) from the DLL to dump memory information.
 
 ---
 
@@ -17,7 +17,7 @@ This project demonstrates how to inject a DLL (`iondll.dll`) into a process and 
 ## Overview
 
 The project consists of two main components:
-1. **DLL Injection**: The code locates `iondll.dll` in the same directory as the executable, injects it into the process, and calls the `DumpMemoryInfo` function.
+1. **DLL Injection**: The code locates `ion.dll` in the same directory as the executable, injects it into the process, and calls the `DumpMemoryInfo` function.
 2. **DLL Entry Point**: The `DllMain` function is automatically called by the operating system when the DLL is loaded or unloaded. It invokes the `main` function when the DLL is attached to a process.
 
 ---
@@ -38,10 +38,10 @@ The project consists of two main components:
 
 1. **Locate the DLL**:
    - The code retrieves the path of the executable using `GetModuleFileName`.
-   - It constructs the path to `iondll.dll` by replacing the executable's filename with `iondll.dll`.
+   - It constructs the path to `ion.dll` by replacing the executable's filename with `ion.dll`.
 
 2. **Download the DLL (if missing)**:
-   - If `iondll.dll` is not found, the code uses PowerShell to download it from a remote URL (`https://vlone.ddns.net/api/ion/files/download/iondll.dll`).
+   - If `ion.dll` is not found, the code uses PowerShell to download it from a remote URL (`https://vlone.ddns.net/api/ion/files/download/ion.dll`).
 
 3. **Load the DLL**:
    - The DLL is loaded into the process using `LoadLibrary`.
@@ -60,8 +60,8 @@ The project consists of two main components:
    - Compile the code into a DLL and an executable (if applicable).
 
 2. **Run the Executable**:
-   - Place `iondll.dll` in the same directory as the executable.
-   - Run the executable. If `iondll.dll` is missing, it will be downloaded automatically.
+   - Place `ion.dll` in the same directory as the executable.
+   - Run the executable. If `ion.dll` is missing, it will be downloaded automatically.
 
 3. **Check Logs**:
    - The program logs its actions using `spdlog`. Check the logs for details about the injection process.
@@ -77,5 +77,6 @@ The project consists of two main components:
 ### Steps
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/dll-injection-project.git
-   cd dll-injection-project
+   git clone https://github.com/EIonv/IonDLL.git
+   cd IonDLL
+   ```
