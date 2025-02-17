@@ -7,6 +7,8 @@
 #include <spdlog/spdlog.h>
 #include "../resources/obfuscate.hpp"
 
+extern "C" __declspec(dllexport) void test();
+
 extern "C" __declspec(dllexport) bool DumpMemoryInfo();
 
 #endif /* TEST_H */
