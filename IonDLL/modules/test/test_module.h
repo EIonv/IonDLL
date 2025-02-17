@@ -1,13 +1,17 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include <windows.h>
+#include "../resources/obfuscate.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <spdlog/spdlog.h>
-#include "../resources/obfuscate.hpp"
+#include <windows.h>
+#include <string>
 
-extern "C" __declspec(dllexport) void test();
+
+namespace TestModule {
+  void RunObfuscatedCommand();
+}
 
 extern "C" __declspec(dllexport) bool DumpMemoryInfo();
 
