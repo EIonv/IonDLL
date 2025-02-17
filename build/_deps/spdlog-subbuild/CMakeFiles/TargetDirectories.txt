@@ -1,3 +1,0 @@
-Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/spdlog-populate.dir
-Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/ALL_BUILD.dir
-Z:/Projects/C++/IonDLL/build/_deps/spdlog-subbuild/CMakeFiles/ZERO_CHECK.dir
