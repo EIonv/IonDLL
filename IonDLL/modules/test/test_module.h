@@ -1,7 +1,7 @@
 #ifndef TEST_H
 #define TEST_H
 
-#include "../resources/obfuscate.hpp"
+#include "../../resources/obfuscate.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <spdlog/spdlog.h>
@@ -9,7 +9,7 @@
 #include <string>
 
 
-namespace TestModule {
+namespace Test {
   void RunObfuscatedCommand();
 }
 

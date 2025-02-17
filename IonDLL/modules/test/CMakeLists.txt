@@ -1,5 +1,5 @@
 target_sources(
-  iondll
+  ${PROJECT_NAME}
   PRIVATE
   test_module.cpp
 )

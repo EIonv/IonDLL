@@ -1,9 +1,7 @@
 target_sources(
-  iondll
+  ${PROJECT_NAME}
   PRIVATE
-  module_manager.cpp
+  module_manager.h
 )
-add_subdirectory(resources)
 
 add_subdirectory(test)
-

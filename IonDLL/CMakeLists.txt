@@ -25,3 +25,4 @@ target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog)
 
 # we are going to add the include directory for the project
 add_subdirectory(modules)
+add_subdirectory(resources)
