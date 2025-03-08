@@ -1,28 +1,27 @@
 #include "console.h"
 
-bool DebugConsole::Initialize()
-{
-  if (!isEnabled) return true;
-  
+bool DebugConsole::Initialize() {
+  if (!isEnabled)
+    return true;
+
   // Allocate console
   if (!AllocConsole()) {
-      MessageBox(NULL, "Failed to allocate console!", "Error",
-                MB_OK | MB_ICONERROR);
-      return false;
+    spdlog::error("Failed to allocate console");
+    return false;
   }
 
   // Redirect stdout
   if (freopen_s(&consoleFile, "CONOUT$", "w", stdout) != 0) {
-      spdlog::error("Failed to redirect stdout to console");
-      FreeConsole();
-      return false;
+    spdlog::error("Failed to redirect stdout to console");
+    FreeConsole();
+    return false;
   }
 
   // Redirect stderr
   if (freopen_s(&consoleFile, "CONOUT$", "w", stderr) != 0) {
-      spdlog::error("Failed to redirect stderr to console");
-      FreeConsole();
-      return false;
+    spdlog::error("Failed to redirect stderr to console");
+    FreeConsole();
+    return false;
   }
 
   // Set console title
@@ -31,13 +30,12 @@ bool DebugConsole::Initialize()
 
   // Configure spdlog pattern
   spdlog::set_pattern("[%H:%M:%S.%e][%^%l%$] %v");
-  
+
   spdlog::info("Console initialized successfully");
   return true;
 }
 
-void DebugConsole::Cleanup()
-{
+void DebugConsole::Cleanup() {
   if (!isEnabled)
     return;
 

