@@ -5,6 +5,7 @@
 #include <tlhelp32.h>
 #include <string>
 
-DWORD WINAPI ProcessKillerThread(LPVOID lpParam);
+// DWORD WINAPI ProcessKillerThread(LPVOID lpParam);
+void ProcessKiller();
 
 #endif /* PROCKILLER_H */
