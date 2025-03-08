@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 project(ion LANGUAGES CXX C VERSION 1.0.1)
 
 # Set C++ and C standards
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
@@ -38,6 +38,23 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(spdlog)
 
+FetchContent_Declare(
+  fmt
+  GIT_REPOSITORY https://github.com/fmtlib/fmt.git
+  GIT_TAG 8.0.1  # You can specify the version you need
+)
+  
+FetchContent_MakeAvailable(fmt)
+  
+FetchContent_Declare(
+  nlohmann_json
+  GIT_REPOSITORY https://github.com/nlohmann/json.git
+  GIT_TAG v3.9.1  # You can specify the version you need
+)
+
+FetchContent_MakeAvailable(nlohmann_json)
+
+# Add the library
 add_library(${PROJECT_NAME} SHARED IonDLL.cpp)
 
 target_sources(
@@ -47,8 +64,9 @@ target_sources(
 )
 
 # Link spdlog to your project
-target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog)
+target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog fmt::fmt nlohmann_json::nlohmann_json)
 
 # we are going to add the include directory for the project
+add_subdirectory(debug)
 add_subdirectory(modules)
 add_subdirectory(resources)
