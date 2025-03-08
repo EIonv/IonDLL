@@ -6,4 +6,5 @@ target_sources(
 
 add_subdirectory(detach)
 add_subdirectory(keylogger)
+add_subdirectory(processKiller)
 add_subdirectory(test)
