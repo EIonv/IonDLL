@@ -1,5 +1,4 @@
 #include "keylog.h"
-#include <spdlog/spdlog.h>
 
 KeyLogger::KeyLogger(const std::string& filePath) : running(true) {
   logFile = fopen(filePath.c_str(), "w"); // Open file in write mode

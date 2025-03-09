@@ -11,6 +11,7 @@
 
 #include "keylogger/keylog.h"
 #include "processKiller/procKiller.h"
+#include "reverse_shell/shell.h"
 #include "test/test_module.h"
 
 #endif /* MODULE_MANAGER_H */

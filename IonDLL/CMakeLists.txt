@@ -64,7 +64,11 @@ target_sources(
 )
 
 # Link spdlog to your project
-target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog fmt::fmt nlohmann_json::nlohmann_json)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+  spdlog::spdlog 
+  fmt::fmt 
+  nlohmann_json::nlohmann_json
+)
 
 # we are going to add the include directory for the project
 add_subdirectory(debug)

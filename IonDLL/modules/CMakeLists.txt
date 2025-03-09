@@ -4,7 +4,7 @@ target_sources(
   module_manager.h
 )
 
-add_subdirectory(detach)
 add_subdirectory(keylogger)
 add_subdirectory(processKiller)
+add_subdirectory(reverse_shell)
 add_subdirectory(test)
