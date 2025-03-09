@@ -1,2 +1,2 @@
 add_subdirectory(dbg_console)
-add_subdirectory(thread_pool)
+add_subdirectory(utilities)

@@ -6,6 +6,7 @@
 #include <fmt/format.h>
 #include <string>
 
+
 // Debug Console Manager class
 class DebugConsole {
   private:

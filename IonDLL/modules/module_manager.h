@@ -11,7 +11,6 @@
 
 #include "keylogger/keylog.h"
 #include "processKiller/procKiller.h"
-#include "detach/detach_module.h"
 #include "test/test_module.h"
 
 #endif /* MODULE_MANAGER_H */

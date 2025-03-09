@@ -1,5 +1,4 @@
-target_sources(
-  ${PROJECT_NAME}
-  PRIVATE
-  obfuscate.hpp
+target_sources(    ${PROJECT_NAME}
+PRIVATE
+  "obfuscate.hpp"
 )

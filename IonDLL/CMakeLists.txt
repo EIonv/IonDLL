@@ -69,4 +69,3 @@ target_link_libraries(${PROJECT_NAME} PRIVATE spdlog::spdlog fmt::fmt nlohmann_j
 # we are going to add the include directory for the project
 add_subdirectory(debug)
 add_subdirectory(modules)
-add_subdirectory(resources)

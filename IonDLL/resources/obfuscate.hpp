@@ -27,8 +27,8 @@ std::cout << obfuscated_string << std::endl;
 
 ----------------------------------------------------------------------------- */
 
-#ifndef A6731D8D_0513_4A63_B085_614A3C226E28
-#define A6731D8D_0513_4A63_B085_614A3C226E28
+#ifndef F471967F_B0A4_47E7_B956_C8DEB37A09B3
+#define F471967F_B0A4_47E7_B956_C8DEB37A09B3
 
 #if __cplusplus >= 202002L
 #define AY_CONSTEVAL consteval
@@ -251,4 +251,4 @@ namespace ay
 	()
 
 
-#endif /* A6731D8D_0513_4A63_B085_614A3C226E28 */
+#endif /* F471967F_B0A4_47E7_B956_C8DEB37A09B3 */
