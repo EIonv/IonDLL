@@ -1,33 +1,24 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include <Windows.h>
 #include <spdlog/spdlog.h>
 #include <spdlog/sinks/stdout_color_sinks.h>
-#include <spdlog/sinks/basic_file_sink.h>  // Added for file logging
+#include <spdlog/sinks/basic_file_sink.h>
 #include <fmt/format.h>
-#include <string>
+#include <windows.h>
 
-void InitializeLogging();
-
-// Debug Console Manager class
 class DebugConsole {
-  private:
-      FILE* consoleFile = nullptr;
-      bool isEnabled = false;
-  
-  public:
-      DebugConsole(bool enable = false) : isEnabled(enable) {}
-      
-      ~DebugConsole() {
-          Cleanup();
-      }
-  
-      bool Initialize();
-  
-      void Cleanup();
-  
-      bool IsEnabled() const { return isEnabled; }
-  };
+public:
+    DebugConsole(bool enable = true) : isEnabled(enable), consoleFile(nullptr) {}
+    ~DebugConsole() { Cleanup(); }
 
-#endif /* CONSOLE_H */
+    bool Initialize();
+    void InitializeLogging();
+    void Cleanup();
+
+private:
+    bool isEnabled;
+    FILE* consoleFile;
+};
+
+#endif
