@@ -13,7 +13,7 @@ public:
     ~DebugConsole() { Cleanup(); }
 
     bool Initialize();
-    void InitializeLogging();
+    bool InitializeLogging();
     void Cleanup();
 
 private:

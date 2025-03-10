@@ -68,6 +68,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   spdlog::spdlog 
   fmt::fmt 
   nlohmann_json::nlohmann_json
+  crypt32
 )
 
 # we are going to add the include directory for the project

@@ -10,10 +10,10 @@ std::string GetTempDir() {
 }
 
 // Initialize logging with console and file sinks
-void DebugConsole::InitializeLogging() {
+bool DebugConsole::InitializeLogging() {
     // If logging is disabled, don't initialize
     if (!isEnabled)
-        return;
+        return false;
 
     try {
         // Create vector of sinks
@@ -44,9 +44,13 @@ void DebugConsole::InitializeLogging() {
         spdlog::info("Logging initialized successfully");
         spdlog::info("Debug log file created at: {}", logFilePath);
 
+        return true;
     } catch (const spdlog::spdlog_ex &ex) {
         std::cerr << "Log initialization failed: " << ex.what() << std::endl;
+        return false;
     }
+
+    return false;
 }
 
 bool DebugConsole::Initialize() {
