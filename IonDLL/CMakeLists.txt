@@ -69,6 +69,8 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   fmt::fmt 
   nlohmann_json::nlohmann_json
   crypt32
+  ws2_32
+  wininet
 )
 
 # we are going to add the include directory for the project

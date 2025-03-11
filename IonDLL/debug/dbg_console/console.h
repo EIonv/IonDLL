@@ -16,7 +16,7 @@ public:
     bool InitializeLogging();
     void Cleanup();
 
-private:
+public:
     bool isEnabled;
     FILE* consoleFile;
 };

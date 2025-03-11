@@ -1,2 +1,1 @@
 add_subdirectory(path_utils)
-add_subdirectory(thread)
