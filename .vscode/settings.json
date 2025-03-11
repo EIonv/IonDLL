@@ -1,4 +1,6 @@
 {
-  "cmake.sourceDirectory": "Z:/Projects/C++/IonDLL/IonDLL",
-  "C_Cpp.default.compilerPath": "D:/LLVM/bin/clang.exe"
+  "cmake.sourceDirectory": "C:/Users/Andrew/Desktop/Projects/C++/IonDLL/IonDLL",
+  "files.associations": {
+    "xstring": "cpp"
+  }
 }
